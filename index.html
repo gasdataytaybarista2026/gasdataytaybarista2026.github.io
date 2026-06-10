@@ -10,12 +10,12 @@
     
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-main: #000000;
-            --text-muted: #777777;
-            --visual-placeholder: #f9f9f9;
-            --visual-placeholder-hover: #f1f1f1;
-            --border-color: #eeeeee;
+            --bg-color: #fbf9f6; 
+            --text-main: #111111;
+            --text-muted: #7f7a75;
+            --visual-placeholder: #f3efe9;
+            --visual-placeholder-hover: #ebe4da;
+            --border-color: #e8e2d9;
             
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Playfair Display', serif;
@@ -41,20 +41,20 @@
         .wrapper {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 14rem;
+            margin-bottom: 6rem;
         }
 
         .logo {
             font-family: var(--font-serif);
             font-weight: 600;
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             text-decoration: none;
             color: var(--text-main);
             letter-spacing: -0.02em;
@@ -95,49 +95,73 @@
         }
 
         .hero {
-            max-width: 850px;
-            margin-bottom: 14rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 8rem;
         }
 
-        .hero h1 {
+        .hero-text h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 400;
             line-height: 1.2;
-            letter-spacing: -0.03em;
-            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
         }
 
-        .hero p {
-            font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+        .hero-text p {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            max-width: 580px;
             font-weight: 300;
+        }
+
+        .hero-banner {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background-color: var(--visual-placeholder);
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .section-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             color: var(--text-muted);
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
             font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
         }
 
+    
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
-            margin-bottom: 10rem;
+            gap: 3rem;
+            margin-bottom: 8rem;
         }
 
         @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin-bottom: 6rem;
+            }
             .grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2.5rem;
             }
-            nav { margin-bottom: 7rem; }
-            .hero { margin-bottom: 7rem; }
+            nav { margin-bottom: 4rem; }
         }
 
         .grid-item {
@@ -152,11 +176,13 @@
             background-color: var(--visual-placeholder);
             transition: var(--transition);
             overflow: hidden;
+            border-radius: 4px;
         }
 
         .grid-item:hover .item-visual {
             background-color: var(--visual-placeholder-hover);
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
         }
 
         .media-container {
@@ -173,16 +199,16 @@
         }
 
         .grid-item:hover .media-container img {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         footer {
             border-top: 1px solid var(--border-color);
-            padding-top: 5rem;
+            padding-top: 4rem;
             display: flex;
             justify-content: space-between;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 0.02em;
         }
 
@@ -192,7 +218,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
+            background-color: rgba(251, 249, 246, 0.98);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -220,7 +246,7 @@
             background-color: var(--visual-placeholder);
             object-fit: cover;
             margin-bottom: 2rem;
-            border-radius: 2px;
+            border-radius: 4px;
         }
 
         .modal-name {
@@ -280,6 +306,7 @@
             max-height: 80vh;
             object-fit: contain;
             background-color: var(--visual-placeholder);
+            border-radius: 4px;
         }
 
         .gallery-item-wrapper video {
@@ -288,6 +315,7 @@
             aspect-ratio: 16 / 9;
             background-color: #000000;
             outline: none;
+            border-radius: 4px;
         }
 
         .gallery-nav-sticky {
@@ -303,7 +331,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgba(0, 0, 0, 0.04);
             opacity: 0;
             pointer-events: none;
             transition: var(--transition);
@@ -318,7 +346,7 @@
             max-width: 500px;
             height: 100%;
             background-color: var(--bg-color);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.03);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.02);
             padding: 5rem 3rem;
             overflow-y: auto;
             transition: var(--transition);
@@ -367,7 +395,7 @@
             background-color: var(--visual-placeholder);
             object-fit: cover;
             margin-bottom: 1rem;
-            border-radius: 2px;
+            border-radius: 4px;
         }
 
         .student-profile-name {
@@ -387,7 +415,7 @@
 
     <div class="wrapper">
         <nav>
-            <a href="#" class="logo">GASDA(TAYTAY)-BARISTA 2026 BATCH 1</a>
+            <a href="#" class="logo">GASDA(TAYTAY) — BATCH 1</a>
             <div class="nav-links">
                 <a href="#instructor-modal">Instructor</a>
                 <a href="#students-panel">Students</a>
@@ -395,11 +423,16 @@
         </nav>
 
         <main class="hero">
-            <h1>TBA</h1>
-            <p>TBA</p>
+            <div class="hero-text">
+                <h1>Barista NC II</h1>
+                <p>A visual look back at the journey, crafting techniques, and shared memories of our foundational laboratory coffee training class.</p>
+            </div>
+            <div class="hero-banner">
+                <img src="banner.jpeg" alt="">
+            </div>
         </main>
 
-        <h2 class="section-title">Contents</h2>
+        <h2 class="section-title">Batch Memories</h2>
         <section class="grid">
             
             <a href="#media-gallery" class="grid-item">
@@ -435,7 +468,7 @@
             </div>
         
             <div class="roster-grid">
-                                <div class="student-card">
+                <div class="student-card">
                     <img src="Howard.jpeg" alt="Howard Batch Best-Barista" class="student-img">
                     <span class="student-profile-name">Howard Batch Best-Barista</span>
                 </div>
@@ -445,7 +478,7 @@
                 </div>
                 <div class="student-card">
                     <img src="ken.jpeg" alt="BhOzs Ken" class="student-img">
-                    <span class="student-profile-name"> BhOzs Ken</span>
+                    <span class="student-profile-name">BhOzs Ken</span>
                 </div>
                 <div class="student-card">
                     <img src="lowell.jpeg" alt="Lowell Jay Tubig-Sabon" class="student-img">
@@ -544,12 +577,8 @@
                     Your browser does not support the video tag.
                 </video>
             </div>
-            
-
-
         </div>
     </div>
 
 </body>
-                    </html>
-                        
+</html>
