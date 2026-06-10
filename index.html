@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light">
     <title>GASDA-TAYTAY BARISTA 2026 BATCH 1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,7 @@
             --visual-placeholder: #f3efe9;
             --visual-placeholder-hover: #ebe4da;
             --border-color: #e8e2d9;
+            --accent-tone: #9c8e7e;
             
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Playfair Display', serif;
@@ -41,37 +43,48 @@
         .wrapper {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 0 1.5rem 3rem 1.5rem;
         }
 
         nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(251, 249, 246, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.8rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6rem;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            z-index: 900;
+            border-bottom: 1px solid rgba(232, 226, 217, 0.3);
         }
 
         .logo {
             font-family: var(--font-serif);
             font-weight: 600;
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 3.5vw, 1.25rem);
             text-decoration: none;
             color: var(--text-main);
             letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
         .nav-links {
             display: flex;
-            gap: 3.5rem;
+            gap: 1.5rem;
+            flex-shrink: 0;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
             position: relative;
-            padding-bottom: 6px;
+            padding-bottom: 4px;
             transition: var(--transition);
         }
 
@@ -79,11 +92,11 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            right: 0;
             width: 0;
             height: 1px;
             background-color: var(--text-main);
-            transition: var(--transition);
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-links a:hover {
@@ -91,30 +104,66 @@
         }
 
         .nav-links a:hover::after {
+            left: 0;
+            right: auto;
             width: 100%;
         }
 
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
-            margin-bottom: 8rem;
+            margin-bottom: 6rem;
+        }
+
+        .accent-badge {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-tone);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .hero-text h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 400;
             line-height: 1.2;
             letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .hero-text p {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--text-muted);
             font-weight: 300;
+        }
+
+        .scroll-prompt {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .scroll-prompt span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+        }
+        .scroll-line {
+            width: 1px;
+            height: 35px;
+            background-color: var(--text-muted);
+            opacity: 0.4;
+            animation: pulseLine 2.5s infinite ease-in-out;
+        }
+        @keyframes pulseLine {
+            0%, 100% { height: 25px; opacity: 0.2; }
+            50% { height: 45px; opacity: 0.8; }
         }
 
         .hero-banner {
@@ -137,31 +186,31 @@
             text-transform: uppercase;
             letter-spacing: 0.25em;
             color: var(--text-muted);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             font-weight: 500;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.75rem;
         }
 
-    
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-bottom: 8rem;
+            gap: 2rem;
+            margin-bottom: 6rem;
         }
 
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
-                margin-bottom: 6rem;
+                gap: 2rem;
+                margin-bottom: 4rem;
             }
             .grid {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: 2rem;
             }
-            nav { margin-bottom: 4rem; }
+            nav { margin-bottom: 2rem; }
+            .scroll-prompt { display: none; }
         }
 
         .grid-item {
@@ -182,7 +231,7 @@
         .grid-item:hover .item-visual {
             background-color: var(--visual-placeholder-hover);
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
         }
 
         .media-container {
@@ -198,18 +247,13 @@
             transition: var(--transition);
         }
 
-        .grid-item:hover .media-container img {
-            transform: scale(1.02);
-        }
-
         footer {
             border-top: 1px solid var(--border-color);
-            padding-top: 4rem;
+            padding-top: 3rem;
             display: flex;
             justify-content: space-between;
             color: var(--text-muted);
             font-size: 0.8rem;
-            letter-spacing: 0.02em;
         }
 
         .modal-overlay {
@@ -233,28 +277,36 @@
             pointer-events: auto;
         }
 
-        .modal-content {
+         .modal-content {
             text-align: center;
             max-width: 400px;
             width: 100%;
             padding: 2rem;
+             
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-img {
             width: 100%;
+            max-width: 280px;
             aspect-ratio: 1 / 1;
+            max-height: 35vh;
             background-color: var(--visual-placeholder);
             object-fit: cover;
-            margin-bottom: 2rem;
+            margin: 0 auto 1.5rem auto;
             border-radius: 4px;
         }
 
         .modal-name {
             font-family: var(--font-serif);
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
             font-weight: 400;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
         .modal-title-sub {
@@ -262,7 +314,7 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin-bottom: 3.5rem;
+            margin-bottom: 2rem;
         }
 
         .close-btn {
@@ -275,11 +327,6 @@
             padding-bottom: 4px;
             transition: var(--transition);
         }
-
-        .close-btn:hover {
-            color: var(--text-muted);
-            border-bottom-color: var(--text-muted);
-        }
         
         .gallery-viewport {
             width: 100%;
@@ -289,39 +336,33 @@
             align-items: center;
             justify-content: flex-start;
             overflow-y: auto;
-            padding: 6rem 2rem;
-            gap: 4rem;
+            padding: 6rem 1.5rem;
+            gap: 3rem;
         }
 
         .gallery-item-wrapper {
             width: 100%;
             max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .gallery-item-wrapper img {
             width: 100%;
-            max-height: 80vh;
+            max-height: 75vh;
             object-fit: contain;
-            background-color: var(--visual-placeholder);
             border-radius: 4px;
         }
 
         .gallery-item-wrapper video {
             width: 100%;
-            max-width: 900px;
             aspect-ratio: 16 / 9;
             background-color: #000000;
-            outline: none;
             border-radius: 4px;
         }
 
         .gallery-nav-sticky {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
+            top: 1.5rem;
+            right: 1.5rem;
             z-index: 1010;
         }
         
@@ -343,71 +384,58 @@
             top: 0;
             right: -550px;
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             height: 100%;
             background-color: var(--bg-color);
             box-shadow: -10px 0 40px rgba(0,0,0,0.02);
-            padding: 5rem 3rem;
+            padding: 4rem 2rem;
             overflow-y: auto;
             transition: var(--transition);
             z-index: 1000;
         }
 
-        .panel-overlay:target {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .panel-overlay:target .panel-drawer {
-            right: 0;
-        }
+        .panel-overlay:target { opacity: 1; pointer-events: auto; }
+        .panel-overlay:target .panel-drawer { right: 0; }
 
         .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 1rem;
         }
 
         .panel-title {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
-            font-weight: 400;
-            letter-spacing: -0.01em;
+            font-size: 1.6rem;
         }
 
         .roster-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem 2rem;
+            gap: 2rem 1.5rem;
         }
 
-        .student-card {
-            display: flex;
-            flex-direction: column;
-        }
+        .student-card { display: flex; flex-direction: column; }
 
         .student-img {
             width: 100%;
             aspect-ratio: 1 / 1;
             background-color: var(--visual-placeholder);
             object-fit: cover;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             border-radius: 4px;
         }
 
         .student-profile-name {
-            font-family: var(--font-sans);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 400;
             color: var(--text-main);
         }
 
-        @media (max-width: 480px) {
-            .panel-drawer { padding: 4rem 2rem; }
-            .roster-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        @media (max-width: 400px) {
+            .roster-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
@@ -415,7 +443,7 @@
 
     <div class="wrapper">
         <nav>
-            <a href="#" class="logo">GASDA(TAYTAY) — BATCH 1</a>
+            <a href="#" class="logo">GASDA-TAYTAY BARISTA 2026 BATCH 1</a>
             <div class="nav-links">
                 <a href="#instructor-modal">Instructor</a>
                 <a href="#students-panel">Students</a>
@@ -424,17 +452,21 @@
 
         <main class="hero">
             <div class="hero-text">
+                <div class="accent-badge">TESDA Specialization Course // 2026</div>
                 <h1>Barista NC II</h1>
                 <p>A visual look back at the journey, crafting techniques, and shared memories of our foundational laboratory coffee training class.</p>
+                <div class="scroll-prompt">
+                    <span>Scroll to explore</span>
+                    <div class="scroll-line"></div>
+                </div>
             </div>
             <div class="hero-banner">
-                <img src="banner.jpeg" alt="">
+                <img src="1.jpeg" alt="">
             </div>
         </main>
 
         <h2 class="section-title">Batch Memories</h2>
         <section class="grid">
-            
             <a href="#media-gallery" class="grid-item">
                 <div class="item-visual">
                     <div class="media-container">
@@ -442,7 +474,6 @@
                     </div>
                 </div>
             </a>
-
         </section>
 
         <footer>
@@ -469,35 +500,35 @@
         
             <div class="roster-grid">
                 <div class="student-card">
-                    <img src="Howard.jpeg" alt="Howard Batch Best-Barista" class="student-img">
+                    <img src="Howard.jpeg" alt="Howard" class="student-img">
                     <span class="student-profile-name">Howard Batch Best-Barista</span>
                 </div>
                 <div class="student-card">
-                    <img src="Gian.jpeg" alt="Pres Gian" class="student-img">
+                    <img src="Gian.jpeg" alt="Gian" class="student-img">
                     <span class="student-profile-name">Pres Gian</span>
                 </div>
                 <div class="student-card">
-                    <img src="ken.jpeg" alt="BhOzs Ken" class="student-img">
+                    <img src="ken.jpeg" alt="Ken" class="student-img">
                     <span class="student-profile-name">BhOzs Ken</span>
                 </div>
                 <div class="student-card">
-                    <img src="lowell.jpeg" alt="Lowell Jay Tubig-Sabon" class="student-img">
+                    <img src="lowell.jpeg" alt="Lowell" class="student-img">
                     <span class="student-profile-name">Lowell Jay Tubig-Sabon</span>
                 </div>
                 <div class="student-card">
-                    <img src="patrick.jpg" alt="Patrick Bahala Na" class="student-img">
+                    <img src="patrick.jpg" alt="Patrick" class="student-img">
                     <span class="student-profile-name">Patrick Bahala Na</span>
                 </div>
                 <div class="student-card">
-                    <img src="jorge.jpeg" alt="Jorge All-Around" class="student-img">
+                    <img src="jorge.jpeg" alt="Jorge" class="student-img">
                     <span class="student-profile-name">Jorge All-Around</span>
                 </div>
                 <div class="student-card">
-                    <img src="richard.jpeg" alt="Richard Spanis Latte" class="student-img">
-                    <span class="student-profile-name">Richard Spanis Latte</span>
+                    <img src="richard.jpeg" alt="Richard" class="student-img">
+                    <span class="student-profile-name">Richard Spanish Latte</span>
                 </div>
                 <div class="student-card">
-                    <img src="jansen.jpeg" alt="Jansen Yon na yon" class="student-img">
+                    <img src="jansen.jpeg" alt="Jansen" class="student-img">
                     <span class="student-profile-name">Jansen Yon na yon</span>
                 </div>
             </div>
@@ -510,66 +541,26 @@
         </div>
         
         <div class="gallery-viewport">
-            <div class="gallery-item-wrapper">
-                <img src="1.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="2.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="3.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="4.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="5.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="6.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="7.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="8.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="9.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="10.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="11.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="12.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="13.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="14.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="15.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="16.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="17.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="18.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="19.jpeg" alt="">
-            </div>
-            <div class="gallery-item-wrapper">
-                <img src="20.jpeg" alt="">
-            </div>
+            <div class="gallery-item-wrapper"><img src="1.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="2.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="3.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="4.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="5.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="6.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="7.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="8.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="9.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="10.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="11.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="12.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="13.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="14.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="15.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="16.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="17.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="18.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="19.jpeg" alt=""></div>
+            <div class="gallery-item-wrapper"><img src="20.jpeg" alt=""></div>
             
             <div class="gallery-item-wrapper">
                 <video controls preload="metadata" poster="latteart-thumb.jpeg">
