@@ -21,7 +21,7 @@
             
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Playfair Display', serif;
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -31,13 +31,21 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #fbf9f6 0%, #f5f1ea 50%, #fbf9f6 100%);
+            background-size: 400% 400%;
+            animation: steamFlow 15s ease infinite;
             color: var(--text-main);
             font-family: var(--font-sans);
             font-weight: 300;
             line-height: 1.7;
             letter-spacing: -0.01em;
             -webkit-font-smoothing: antialiased;
+        }
+
+        @keyframes steamFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .wrapper {
@@ -173,12 +181,22 @@
             overflow: hidden;
             border-radius: 4px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease;
         }
 
         .hero-banner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .hero:hover .hero-banner {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+        }
+        .hero:hover .hero-banner img {
+            transform: scale(1.06);
         }
         
         .section-title {
@@ -196,7 +214,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-bottom: 6rem;
+            margin-bottom: 4rem;
         }
 
         @media (max-width: 768px) {
@@ -217,21 +235,30 @@
             display: block;
             text-decoration: none;
             color: inherit;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealCard 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .grid-item:nth-child(1) { animation-delay: 0.1s; }
+        .grid-item:nth-child(2) { animation-delay: 0.2s; }
+        .grid-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes revealCard {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .item-visual {
             width: 100%;
             aspect-ratio: 16 / 10;
             background-color: var(--visual-placeholder);
-            transition: var(--transition);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
             overflow: hidden;
             border-radius: 4px;
         }
 
         .grid-item:hover .item-visual {
-            background-color: var(--visual-placeholder-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
         }
 
         .media-container {
@@ -244,7 +271,37 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .grid-item:hover .media-container img {
+            transform: scale(1.05);
+        }
+
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--visual-placeholder);
+            padding: 0.9rem 0;
+            margin: 4rem 0 1rem 0;
+            border-radius: 4px;
+        }
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+        .ticker-item {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-tone);
+            padding: 0 2.5rem;
+            font-weight: 500;
+        }
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
 
         footer {
@@ -270,6 +327,7 @@
             pointer-events: none;
             transition: var(--transition);
             z-index: 1000;
+            padding: 1.5rem;
         }
 
         .modal-overlay:target {
@@ -277,12 +335,11 @@
             pointer-events: auto;
         }
 
-         .modal-content {
+        .modal-content {
             text-align: center;
             max-width: 400px;
             width: 100%;
-            padding: 2rem;
-             
+            padding: 1rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -293,7 +350,7 @@
             width: 100%;
             max-width: 280px;
             aspect-ratio: 1 / 1;
-            max-height: 35vh;
+            max-height: 35vh; 
             background-color: var(--visual-placeholder);
             object-fit: cover;
             margin: 0 auto 1.5rem auto;
@@ -326,6 +383,7 @@
             border-bottom: 1px solid var(--text-main);
             padding-bottom: 4px;
             transition: var(--transition);
+            flex-shrink: 0;
         }
         
         .gallery-viewport {
@@ -417,7 +475,14 @@
             gap: 2rem 1.5rem;
         }
 
-        .student-card { display: flex; flex-direction: column; }
+        .student-card { 
+            display: flex; 
+            flex-direction: column; 
+            transition: var(--transition);
+        }
+        .student-card:hover {
+            transform: scale(1.03);
+        }
 
         .student-img {
             width: 100%;
@@ -426,6 +491,12 @@
             object-fit: cover;
             margin-bottom: 0.75rem;
             border-radius: 4px;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .student-card:hover .student-img {
+            border-color: var(--accent-tone);
+            box-shadow: 0 10px 25px rgba(156, 142, 126, 0.15);
         }
 
         .student-profile-name {
@@ -461,11 +532,12 @@
                 </div>
             </div>
             <div class="hero-banner">
-                <img src="1.jpeg" alt="">
+                <img src="banner.jpeg" alt="">
             </div>
         </main>
 
         <h2 class="section-title">Batch Memories</h2>
+
         <section class="grid">
             <a href="#media-gallery" class="grid-item">
                 <div class="item-visual">
@@ -475,6 +547,16 @@
                 </div>
             </a>
         </section>
+
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <div class="ticker-item">MGA ASWANG  ~MA'AM JENNY</div>
+                <div class="ticker-item">ANO? WALA BANG SASALING IBA DIYAN? ~JANSEN</div>
+                <div class="ticker-item">SIGE, IKAW NA UNA ~PAT</div>
+                <div class="ticker-item">AKO NA NEXT DYAN ~KEN</div>
+                <div class="ticker-item">LARO LARO ~RICHARD</div>
+            </div>
+        </div>
 
         <footer>
             <p>&copy; 2026 GASDA-TESDA</p>
@@ -509,7 +591,7 @@
                 </div>
                 <div class="student-card">
                     <img src="ken.jpeg" alt="Ken" class="student-img">
-                    <span class="student-profile-name">BhOzs Ken</span>
+                    <span class="student-profile-name">BhOszxc Ken</span>
                 </div>
                 <div class="student-card">
                     <img src="lowell.jpeg" alt="Lowell" class="student-img">
