@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="only light">
+    <meta name="color-scheme" content="light dark">
     <title>GASDA-TAYTAY BARISTA 2026 BATCH 1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,8 @@
     
     <style>
         :root {
+            --bg-gradient-start: #fbf9f6;
+            --bg-gradient-end: #f5f1ea;
             --bg-color: #fbf9f6; 
             --text-main: #111111;
             --text-muted: #7f7a75;
@@ -18,10 +20,28 @@
             --visual-placeholder-hover: #ebe4da;
             --border-color: #e8e2d9;
             --accent-tone: #9c8e7e;
+            --navbar-bg: rgba(251, 249, 246, 0.85);
+            --glass-bg: rgba(243, 239, 233, 0.4);
+            --modal-bg: rgba(251, 249, 246, 0.98);
             
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Playfair Display', serif;
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #161412;
+            --bg-gradient-end: #1c1916;
+            --bg-color: #161412;
+            --text-main: #f5f1ea;
+            --text-muted: #a39e98;
+            --visual-placeholder: #26221f;
+            --visual-placeholder-hover: #332d29;
+            --border-color: #2d2824;
+            --accent-tone: #c5b8a5;
+            --navbar-bg: rgba(22, 20, 18, 0.85);
+            --glass-bg: rgba(38, 34, 31, 0.4);
+            --modal-bg: rgba(22, 20, 18, 0.98);
         }
 
         * {
@@ -31,7 +51,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #fbf9f6 0%, #f5f1ea 50%, #fbf9f6 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 50%, var(--bg-gradient-start) 100%);
             background-size: 400% 400%;
             animation: steamFlow 15s ease infinite;
             color: var(--text-main);
@@ -40,6 +60,7 @@
             line-height: 1.7;
             letter-spacing: -0.01em;
             -webkit-font-smoothing: antialiased;
+            transition: color 0.5s ease;
         }
 
         @keyframes steamFlow {
@@ -57,7 +78,7 @@
         nav {
             position: sticky;
             top: 0;
-            background-color: rgba(251, 249, 246, 0.85); 
+            background-color: var(--navbar-bg); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 1.8rem 0;
@@ -67,7 +88,8 @@
             gap: 1rem;
             margin-bottom: 4rem;
             z-index: 900;
-            border-bottom: 1px solid rgba(232, 226, 217, 0.3);
+            border-bottom: 1px solid rgba(232, 226, 217, 0.15);
+            transition: background-color 0.5s ease;
         }
 
         .logo {
@@ -82,11 +104,12 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 1.5rem;
             flex-shrink: 0;
         }
 
-        .nav-links a {
+        .nav-links a, .theme-toggle {
             text-decoration: none;
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -94,6 +117,10 @@
             position: relative;
             padding-bottom: 4px;
             transition: var(--transition);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
         }
 
         .nav-links a::after {
@@ -115,6 +142,20 @@
             left: 0;
             right: auto;
             width: 100%;
+        }
+        
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px;
+            border-radius: 12px;
+            background-color: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         .hero {
@@ -193,11 +234,11 @@
         
         @media (hover: hover) {
             .hero:hover .hero-banner {
-                transform: scale(1.02) translateY(-4px);
-                box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+                transform: scale(1.01) translateY(-2px);
+                box-shadow: 0 25px 50px rgba(0,0,0,0.04);
             }
             .hero:hover .hero-banner img {
-                transform: scale(1.06);
+                transform: scale(1.04);
             }
         }
         
@@ -271,21 +312,22 @@
             width: 100%;
             overflow: hidden;
             background-color: var(--visual-placeholder);
-            padding: 0.9rem 0;
+            padding: 1.1rem 0;
             margin: 4rem 0 1rem 0;
             border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
         .ticker {
             display: flex;
             white-space: nowrap;
-            animation: marquee 25s linear infinite;
+            animation: marquee 28s linear infinite;
         }
         .ticker-item {
             font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             color: var(--accent-tone);
-            padding: 0 2.5rem;
+            padding: 0 3rem;
             font-weight: 500;
         }
         @keyframes marquee {
@@ -308,7 +350,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(251, 249, 246, 0.98);
+            background-color: var(--modal-bg);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -317,6 +359,8 @@
             transition: var(--transition);
             z-index: 1000;
             padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .modal-overlay:target {
@@ -344,6 +388,7 @@
             object-fit: cover;
             margin: 0 auto 1.5rem auto;
             border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .modal-name {
@@ -419,11 +464,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.04);
+            background-color: rgba(0, 0, 0, 0.15);
             opacity: 0;
             pointer-events: none;
             transition: var(--transition);
             z-index: 999;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
         .panel-drawer {
@@ -434,11 +481,12 @@
             max-width: 450px;
             height: 100%;
             background-color: var(--bg-color);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.02);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.04);
             padding: 4rem 2rem;
             overflow-y: auto;
             transition: var(--transition);
             z-index: 1000;
+            border-left: 1px solid var(--border-color);
         }
 
         .panel-overlay:target { opacity: 1; pointer-events: auto; }
@@ -468,11 +516,17 @@
             display: flex; 
             flex-direction: column; 
             transition: var(--transition);
+            padding: 8px;
+            border-radius: 6px;
+            background-color: transparent;
+            border: 1px solid transparent;
         }
 
         @media (hover: hover) {
             .student-card:hover {
-                transform: scale(1.03);
+                transform: translateY(-3px);
+                background-color: var(--glass-bg);
+                border-color: var(--border-color);
             }
         }
 
@@ -495,9 +549,10 @@
         }
 
         .student-profile-name {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
             color: var(--text-main);
+            line-height: 1.4;
         }
 
         @media (max-width: 768px) {
@@ -530,6 +585,7 @@
             <div class="nav-links">
                 <a href="#instructor-modal">Instructor</a>
                 <a href="#students-panel">Students</a>
+                <button class="theme-toggle" id="themeButton" aria-label="Toggle dark mode" onclick="toggleTheme()">Dark</button>
             </div>
         </nav>
 
@@ -619,7 +675,7 @@
                 </div>
                 <div class="student-card">
                     <img src="richard.jpeg" alt="Richard" class="student-img">
-                    <span class="student-profile-name">Richard Spanish Latte</span>
+                    <span class="student-profile-name">Richard Spanis Latte</span>
                 </div>
                 <div class="student-card">
                     <img src="jansen.jpeg" alt="Jansen" class="student-img">
@@ -665,5 +721,19 @@
         </div>
     </div>
 
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const btn = document.getElementById('themeButton');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                btn.textContent = 'Dark';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                btn.textContent = 'Light';
+            }
+        }
+    </script>
 </body>
 </html>
