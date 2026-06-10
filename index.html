@@ -194,8 +194,7 @@
             font-size: 0.85rem;
             letter-spacing: 0.02em;
         }
-
-        /* --- ADDED INSTRUCTOR MODAL STYLES --- */
+        
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -264,6 +263,95 @@
             color: var(--text-muted);
             border-bottom-color: var(--text-muted);
         }
+
+        .panel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .panel-drawer {
+            position: fixed;
+            top: 0;
+            right: -550px;
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            background-color: var(--bg-color);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.03);
+            padding: 5rem 3rem;
+            overflow-y: auto;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .panel-overlay:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .panel-overlay:target .panel-drawer {
+            right: 0;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .panel-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+        
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem 2rem;
+        }
+
+        .student-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .student-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: var(--visual-placeholder);
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border-radius: 2px;
+        }
+
+        .student-profile-name {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 480px) {
+            .panel-drawer {
+                padding: 4rem 2rem;
+            }
+            .roster-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -272,9 +360,8 @@
         <nav>
             <a href="#" class="logo">GASDA(TAYTAY)-BARISTA 2026 BATCH 1</a>
             <div class="nav-links">
-                <!-- Pointing href to the modal target -->
                 <a href="#instructor-modal">Instructor</a>
-                <a href="#">Students</a>
+                <a href="#students-panel">Students</a>
             </div>
         </nav>
 
@@ -299,13 +386,27 @@
 
     <div id="instructor-modal" class="modal-overlay">
         <div class="modal-content">
-        
             <img src="instructor.jpeg" alt="Instructor Portrait" class="modal-img">
-            
             <h2 class="modal-name">Jennyfer Tubigon</h2>
             <p class="modal-title-sub">Trainer</p>
-            
             <a href="#" class="close-btn">Close</a>
+        </div>
+    </div>
+
+    <div id="students-panel" class="panel-overlay">
+        <div class="panel-drawer">
+            <div class="panel-header">
+                <h2 class="panel-title">Class Roster</h2>
+                <a href="#" class="close-btn">Close</a>
+            </div>
+        
+            <div class="roster-grid">
+                <div class="student-card">
+                    <img src="richard.jpeg" alt="Richard Ulang" class="student-img">
+                    <span class="student-profile-name">Richard Ulang</span>
+                </div>
+                
+            </div>
         </div>
     </div>
 
