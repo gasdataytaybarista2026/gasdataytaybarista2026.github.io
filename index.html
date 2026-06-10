@@ -20,7 +20,7 @@
             --visual-placeholder-hover: #ebe4da;
             --border-color: #e8e2d9;
             --accent-tone: #9c8e7e;
-            --navbar-bg: rgba(251, 249, 246, 0.85);
+            --navbar-bg: rgba(251, 249, 246, 0.75);
             --glass-bg: rgba(243, 239, 233, 0.6);
             --modal-bg: rgba(251, 249, 246, 0.98);
             --card-shadow: 0 10px 30px rgba(156, 142, 126, 0.05);
@@ -41,7 +41,7 @@
             --visual-placeholder-hover: #2d2823;
             --border-color: #26221e;
             --accent-tone: #c5b8a5;
-            --navbar-bg: rgba(18, 16, 14, 0.85);
+            --navbar-bg: rgba(18, 16, 14, 0.75);
             --glass-bg: rgba(34, 30, 26, 0.6);
             --modal-bg: rgba(18, 16, 14, 0.98);
             --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -68,7 +68,7 @@
             overflow-x: hidden;
             position: relative;
         }
-        
+
         body::before {
             content: "";
             position: fixed;
@@ -76,7 +76,7 @@
             opacity: 0.03;
             pointer-events: none;
             z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         @keyframes steamFlow {
@@ -85,118 +85,48 @@
             100% { background-position: 0% 50%; }
         }
 
-        @media (min-width: 1025px) {
-            body {
-                height: 100vh;
-                overflow: hidden;
-            }
-            .wrapper {
-                max-width: 100% !important;
-                height: 100vh;
-                padding: 0 !important;
-                display: grid;
-                grid-template-columns: 480px 1fr;
-                grid-template-rows: auto 1fr auto;
-                grid-template-areas: 
-                    "nav nav"
-                    "left right"
-                    "footer right";
-            }
-            nav {
-                grid-area: nav;
-                padding: 1.5rem 3rem !important;
-                margin-bottom: 0 !important;
-                border-bottom: 1px solid var(--border-color);
-            }
-            .hero {
-                grid-area: left;
-                display: flex !important;
-                flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
-                padding: 0 3.5rem;
-                margin-bottom: 0 !important;
-                border-right: 1px solid var(--border-color);
-                height: 100%;
-                background: linear-gradient(to bottom, transparent, rgba(156, 142, 126, 0.02));
-            }
-            .hero-banner {
-                display: none;
-            }
-            .right-scroll-deck {
-                grid-area: right;
-                overflow-y: auto;
-                padding: 5rem 4rem;
-                height: calc(100vh - 75px);
-                display: flex;
-                flex-direction: column;
-                gap: 5rem;
-            }
-            .main-showcase-img {
-                width: 100%;
-                border-radius: 12px;
-                box-shadow: var(--card-shadow-hover);
-                border: 1px solid var(--border-color);
-            }
-            .grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-            footer {
-                grid-area: footer;
-                padding: 1.5rem 3.5rem !important;
-                border-top: 1px solid var(--border-color) !important;
-                border-right: 1px solid var(--border-color);
-                background: var(--bg-color);
-                z-index: 10;
-            }
-        }
-
-        .wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem 3rem 1.5rem;
-        }
-
         nav {
             position: sticky;
             top: 0;
+            left: 0;
+            width: 100%;
             background-color: var(--navbar-bg); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 1.8rem 0;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 4rem;
-            z-index: 900;
+            gap: 1.5rem;
+            z-index: 950;
             border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
             font-family: var(--font-serif);
             font-weight: 600;
-            font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+            font-size: clamp(0.95rem, 4vw, 1.15rem);
             text-decoration: none;
             color: var(--text-main);
             letter-spacing: -0.02em;
-            line-height: 1.2;
+            line-height: 1.3;
+            max-width: 65%;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.25rem;
             flex-shrink: 0;
         }
 
         .nav-links a, .theme-toggle {
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             position: relative;
-            padding-bottom: 6px;
+            padding-bottom: 4px;
             transition: var(--transition);
             background: none;
             border: none;
@@ -223,24 +153,29 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 30px;
             background-color: var(--glass-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             font-weight: 600;
-            box-shadow: var(--card-shadow);
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
         }
 
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
             align-items: center;
-            margin-bottom: 6rem;
+            margin-bottom: 4rem;
         }
 
         .accent-badge {
@@ -249,7 +184,7 @@
             letter-spacing: 0.25em;
             color: var(--accent-tone);
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -275,11 +210,11 @@
             font-size: 1.05rem;
             color: var(--text-muted);
             font-weight: 300;
-            max-width: 90%;
+            margin-bottom: 0.5rem;
         }
 
         .scroll-prompt {
-            margin-top: 3.5rem;
+            margin-top: 2.5rem;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
@@ -305,8 +240,6 @@
 
         .hero-banner {
             width: 100%;
-            aspect-ratio: 4 / 3;
-            background-color: var(--visual-placeholder);
             overflow: hidden;
             border-radius: 8px;
             box-shadow: var(--card-shadow);
@@ -316,6 +249,7 @@
         .hero-banner img {
             width: 100%;
             height: 100%;
+            display: block;
             object-fit: cover;
         }
         
@@ -378,7 +312,7 @@
             object-fit: cover;
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         .card-meta-tag {
             margin-top: 1rem;
             display: flex;
@@ -429,7 +363,6 @@
             border: 1px solid var(--border-color);
             display: flex;
             position: relative;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.01);
         }
         
         .ticker {
@@ -637,12 +570,71 @@
 
         .student-profile-name { font-size: 0.85rem; font-weight: 500; color: var(--text-main); line-height: 1.4; }
 
+        @media (min-width: 1025px) {
+            body {
+                height: 100vh;
+                overflow: hidden;
+            }
+            .wrapper {
+                max-width: 100% !important;
+                height: calc(100vh - 75px);
+                padding: 0 !important;
+                display: grid;
+                grid-template-columns: 480px 1fr;
+                grid-template-rows: 1fr auto;
+                grid-template-areas: 
+                    "left right"
+                    "footer right";
+            }
+            nav {
+                padding: 1.5rem 3rem;
+            }
+            .hero {
+                grid-area: left;
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 0 3.5rem;
+                margin-bottom: 0 !important;
+                border-right: 1px solid var(--border-color);
+                height: 100%;
+                background: linear-gradient(to bottom, transparent, rgba(156, 142, 126, 0.02));
+            }
+            .hero-banner {
+                display: none;
+            }
+            .right-scroll-deck {
+                grid-area: right;
+                overflow-y: auto;
+                padding: 5rem 4rem;
+                height: calc(100vh - 74px);
+                display: flex;
+                flex-direction: column;
+                gap: 5rem;
+            }
+            .main-showcase-img {
+                width: 100%;
+                border-radius: 12px;
+                box-shadow: var(--card-shadow-hover);
+                border: 1px solid var(--border-color);
+            }
+            .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            footer {
+                grid-area: footer;
+                padding: 1.5rem 3.5rem !important;
+                border-top: 1px solid var(--border-color) !important;
+                border-right: 1px solid var(--border-color);
+                background: var(--bg-color);
+                z-index: 10;
+            }
+        }
+
         @media (max-width: 1024px) {
             .right-scroll-deck { display: contents; }
             .main-showcase-img { display: none; }
-            .hero { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
-            .grid { grid-template-columns: 1fr; gap: 2rem; }
-            nav { margin-bottom: 2rem; }
         }
         @media (max-width: 400px) {
             .roster-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -651,23 +643,23 @@
 </head>
 <body>
 
-    <div class="wrapper">
-        <nav>
-            <a href="#" class="logo">GASDA-TAYTAY BARISTA 2026 BATCH 1</a>
-            <div class="nav-links">
-                <a href="#instructor-modal">Instructor</a>
-                <a href="#students-panel">Students</a>
-                <button class="theme-toggle" id="themeButton" aria-label="Toggle dark mode" onclick="toggleTheme()">Dark</button>
-            </div>
-        </nav>
+    <nav>
+        <a href="#" class="logo">GASDA-TAYTAY BARISTA 2026 BATCH 1</a>
+        <div class="nav-links">
+            <a href="#instructor-modal">Instructor</a>
+            <a href="#students-panel">Students</a>
+            <button class="theme-toggle" id="themeButton" aria-label="Toggle dark mode" onclick="toggleTheme()">Dark</button>
+        </div>
+    </nav>
 
+    <div class="wrapper">
         <main class="hero">
             <div class="hero-text">
                 <div class="accent-badge">TESDA Specialization Course // 2026</div>
                 <h1>Barista NC II</h1>
-                <p>A visual look back at the journey, crafting techniques, and shared memories of our foundational laboratory coffee training class.(This site is for entertainment only lol)</p>
+                <p>A visual look back at the journey, crafting techniques, and shared memories of our foundational laboratory coffee training class.<span style="opacity: 0.45; font-size: 0.85rem;">(This site is for entertainment purposes only lol)</span></p>
                 <div class="scroll-prompt">
-                    <span>Scroll to explore</span>
+                    <span>Scroll to explore(Notes: you can tap/click the DARK in the upper panel if you want to use dark mode</span>
                     <div class="scroll-line"></div>
                 </div>
             </div>
@@ -689,7 +681,7 @@
                             </div>
                         </div>
                         <div class="card-meta-tag">
-                            <span>Laboratory Session Album</span>
+                            <span>Photos</span>
                             <span class="view-action">View Gallery →</span>
                         </div>
                     </a>
