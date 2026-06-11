@@ -11,7 +11,6 @@
     
     <style>
         :root {
-            
             --bg-overlay: rgba(250, 248, 245, 0.88);
             --bg-color: #faf8f5; 
             --text-main: #111111;
@@ -20,11 +19,13 @@
             --border-color: rgba(156, 142, 126, 0.15);
             --accent-tone: #8c7e6e;
             --accent-glow: rgba(140, 126, 110, 0.05);
-            --navbar-bg: rgba(250, 248, 245, 0.75);
             
-            --glass-bg: rgba(255, 255, 255, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.6);
-            --modal-bg: rgba(250, 248, 245, 0.92);
+            --navbar-bg: rgba(250, 248, 245, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --modal-bg: rgba(250, 248, 245, 0.18); 
+            --gallery-bg: rgba(250, 248, 245, 0.2); 
+            
             --card-shadow: 0 10px 40px rgba(140, 126, 110, 0.03);
             --card-shadow-hover: 0 40px 80px rgba(140, 126, 110, 0.15);
             
@@ -39,7 +40,6 @@
         }
 
         [data-theme="dark"] {
-            
             --bg-overlay: rgba(10, 9, 8, 0.9);
             --bg-color: #0a0908;
             --text-main: #f5f1ea;
@@ -48,10 +48,13 @@
             --border-color: rgba(197, 184, 165, 0.1);
             --accent-tone: #c5b8a5;
             --accent-glow: rgba(197, 184, 165, 0.05);
-            --navbar-bg: rgba(10, 9, 8, 0.75);
-            --glass-bg: rgba(22, 20, 18, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.07);
-            --modal-bg: rgba(10, 9, 8, 0.92);
+            
+            --navbar-bg: rgba(10, 9, 8, 0.25);
+            --glass-bg: rgba(22, 20, 18, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --modal-bg: rgba(10, 9, 8, 0.15); 
+            --gallery-bg: rgba(10, 9, 8, 0.22); 
+            
             --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             --card-shadow-hover: 0 40px 90px rgba(0, 0, 0, 0.65);
             --cursor-glow: rgba(197, 184, 165, 0.04);
@@ -151,8 +154,8 @@
             position: sticky;
             top: 0; left: 0; width: 100%; max-width: 100%;
             background-color: var(--navbar-bg); 
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            backdrop-filter: blur(16px) saturate(140%);
+            -webkit-backdrop-filter: blur(16px) saturate(140%);
             padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -356,8 +359,8 @@
             border-radius: 24px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--card-shadow);
-            backdrop-filter: blur(25px) saturate(120%);
-            -webkit-backdrop-filter: blur(25px) saturate(120%);
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
             transition: var(--transition-premium);
             position: relative;
             overflow: hidden;
@@ -500,8 +503,8 @@
             transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             z-index: 1000;
             padding: 2rem;
-            backdrop-filter: blur(40px) saturate(140%);
-            -webkit-backdrop-filter: blur(40px) saturate(140%);
+            backdrop-filter: blur(16px) saturate(130%);
+            -webkit-backdrop-filter: blur(16px) saturate(130%);
         }
 
         .modal-overlay:target { opacity: 1; pointer-events: auto; }
@@ -575,17 +578,20 @@
         }
         
         #media-gallery.modal-overlay {
-            background-color: rgba(10, 9, 8, 0.94);
+            background-color: var(--gallery-bg); 
             padding: 6rem 1.5rem 4rem 1.5rem;
             align-items: flex-start;
             overflow-y: auto;
+            backdrop-filter: blur(16px) saturate(130%);
+            -webkit-backdrop-filter: blur(16px) saturate(130%);
         }
+        
         #media-gallery .corner-close {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            background: var(--glass-bg);
+            border-color: var(--glass-border);
         }
-        #media-gallery .corner-close:hover { background: #ffffff; color: #000000; }
+        #media-gallery .corner-close:hover { background: var(--text-main); color: var(--bg-color); }
         
         .gallery-viewport {
             width: 100%;
@@ -600,33 +606,33 @@
         .gallery-item-wrapper { 
             width: 100%; 
             padding: 0.5rem; 
-            background: rgba(255, 255, 255, 0.02); 
-            border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.06); 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            background: var(--glass-bg); 
+            border-radius: 20px; 
+            border: 1px solid var(--glass-border); 
+            box-shadow: var(--card-shadow-hover);
         }
-        .gallery-item-wrapper img { width: 100%; max-height: 80vh; object-fit: contain; border-radius: 12px; }
-        .gallery-item-wrapper video { width: 100%; aspect-ratio: 16 / 9; background-color: #000000; border-radius: 12px; }
+        .gallery-item-wrapper img { width: 100%; max-height: 80vh; object-fit: contain; border-radius: 14px; }
+        .gallery-item-wrapper video { width: 100%; aspect-ratio: 16 / 9; background-color: #000000; border-radius: 14px; }
         
         .panel-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.02);
             opacity: 0;
             pointer-events: none;
             transition: var(--transition-premium);
             z-index: 999;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(12px) saturate(120%);
+            -webkit-backdrop-filter: blur(12px) saturate(120%);
         }
 
         .panel-drawer {
             position: fixed;
             top: 0; right: -600px; width: 100%; max-width: 480px; height: 100%;
             background-color: var(--modal-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            box-shadow: -30px 0 70px rgba(0,0,0,0.15);
+            backdrop-filter: blur(20px) saturate(140%);
+            -webkit-backdrop-filter: blur(20px) saturate(140%);
+            box-shadow: -30px 0 70px rgba(0,0,0,0.08);
             padding: 5rem 2.5rem;
             overflow-y: auto;
             transition: var(--transition-premium);
@@ -665,8 +671,8 @@
             flex-direction: column; 
             padding: 0.75rem; 
             background: linear-gradient(135deg, var(--glass-bg), rgba(255,255,255,0.01));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             transition: var(--transition-premium);
@@ -751,13 +757,13 @@
                 padding: 1.5rem 4rem !important;
                 border-top: 1px solid var(--border-color) !important;
                 border-right: 1px solid var(--border-color);
-                background: rgba(250, 248, 245, 0.4);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
+                background: rgba(250, 248, 245, 0.15);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
                 z-index: 10;
             }
             [data-theme="dark"] footer {
-                background: rgba(10, 9, 8, 0.4);
+                background: rgba(10, 9, 8, 0.15);
             }
             .corner-close { top: 2rem; right: 3rem; }
         }
@@ -861,7 +867,7 @@
     <div id="students-panel" class="panel-overlay">
         <div class="panel-drawer">
             <div class="panel-header">
-                <h2 class="panel-title">Class Roster</h2>
+                <h2 class="panel-title">Student List</h2>
                 <a href="#" class="close-drawer" aria-label="Close Panel">&times;</a>
             </div>
         
