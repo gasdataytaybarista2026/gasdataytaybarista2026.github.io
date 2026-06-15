@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="dark light">
     <title>GASDA-TAYTAY BARISTA 2026 BATCH 1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,35 +11,6 @@
     
     <style>
         :root {
-            --bg-overlay: rgba(250, 248, 245, 0.88);
-            --bg-color: #faf8f5; 
-            --text-main: #111111;
-            --text-muted: #827b73;
-            --visual-placeholder: #f0eae1;
-            --border-color: rgba(156, 142, 126, 0.15);
-            --accent-tone: #8c7e6e;
-            --accent-glow: rgba(140, 126, 110, 0.05);
-            
-            --navbar-bg: rgba(250, 248, 245, 0.25);
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --modal-bg: rgba(250, 248, 245, 0.18); 
-            --gallery-bg: rgba(250, 248, 245, 0.2); 
-            
-            --card-shadow: 0 10px 40px rgba(140, 126, 110, 0.03);
-            --card-shadow-hover: 0 40px 80px rgba(140, 126, 110, 0.15);
-            
-            --font-sans: 'Plus Jakarta Sans', sans-serif;
-            --font-serif: 'Playfair Display', serif;
-            --transition-premium: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            --cursor-glow: rgba(140, 126, 110, 0.06);
-
-            --blob-color-1: rgba(140, 126, 110, 0.16);
-            --blob-color-2: rgba(197, 184, 165, 0.14);
-            --card-spotlight: rgba(140, 126, 110, 0.12);
-        }
-
-        [data-theme="dark"] {
             --bg-overlay: rgba(10, 9, 8, 0.9);
             --bg-color: #0a0908;
             --text-main: #f5f1ea;
@@ -57,11 +28,40 @@
             
             --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             --card-shadow-hover: 0 40px 90px rgba(0, 0, 0, 0.65);
+            
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --transition-premium: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             --cursor-glow: rgba(197, 184, 165, 0.04);
 
             --blob-color-1: rgba(140, 126, 110, 0.12);
             --blob-color-2: rgba(197, 184, 165, 0.08);
             --card-spotlight: rgba(197, 184, 165, 0.08);
+        }
+
+        [data-theme="light"] {
+            --bg-overlay: rgba(250, 248, 245, 0.88);
+            --bg-color: #faf8f5; 
+            --text-main: #111111;
+            --text-muted: #827b73;
+            --visual-placeholder: #f0eae1;
+            --border-color: rgba(156, 142, 126, 0.15);
+            --accent-tone: #8c7e6e;
+            --accent-glow: rgba(140, 126, 110, 0.05);
+            
+            --navbar-bg: rgba(250, 248, 245, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --modal-bg: rgba(250, 248, 245, 0.18); 
+            --gallery-bg: rgba(250, 248, 245, 0.2); 
+            
+            --card-shadow: 0 10px 40px rgba(140, 126, 110, 0.03);
+            --card-shadow-hover: 0 40px 80px rgba(140, 126, 110, 0.15);
+            --cursor-glow: rgba(140, 126, 110, 0.06);
+
+            --blob-color-1: rgba(140, 126, 110, 0.16);
+            --blob-color-2: rgba(197, 184, 165, 0.14);
+            --card-spotlight: rgba(140, 126, 110, 0.12);
         }
 
         * {
@@ -801,18 +801,19 @@
                 display: block;
             }
             .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 2.5rem; }
+            
             footer {
                 grid-area: footer;
                 padding: 2rem 4rem !important;
                 border-top: 1px solid var(--border-color) !important;
                 border-right: 1px solid var(--border-color);
-                background: rgba(250, 248, 245, 0.15);
+                background: rgba(10, 9, 8, 0.15);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 z-index: 10;
             }
-            [data-theme="dark"] footer {
-                background: rgba(10, 9, 8, 0.15);
+            [data-theme="light"] footer {
+                background: rgba(250, 248, 245, 0.15);
             }
             .corner-close { top: 2rem; right: 3rem; }
         }
@@ -843,7 +844,7 @@
         <div class="nav-links">
             <a href="#instructor-modal">Instructor</a>
             <a href="#students-panel">Students</a>
-            <button class="theme-toggle" id="themeButton" onclick="toggleTheme()">Dark</button>
+            <button class="theme-toggle" id="themeButton" onclick="toggleTheme()">Light</button>
         </div>
     </nav>
 
@@ -1086,17 +1087,17 @@
                 card.style.setProperty('--mouse-y', `${yCoord}px`);
             });
         });
-
+        
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const btn = document.getElementById('themeButton');
             
-            if (currentTheme === 'dark') {
+            if (currentTheme === 'light') {
                 document.documentElement.removeAttribute('data-theme');
-                btn.textContent = 'Dark';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
                 btn.textContent = 'Light';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                btn.textContent = 'Dark';
             }
         }
     </script>
